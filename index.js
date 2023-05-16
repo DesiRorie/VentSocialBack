@@ -79,6 +79,9 @@ app.get("/posts", (req, res) => {
     }
   });
 });
+app.get("/test", (req, res) => {
+  res.send("testing");
+});
 
 app.listen(process.env.PORT || 9000, () => {
   console.log("server started");
