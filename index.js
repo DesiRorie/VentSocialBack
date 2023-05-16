@@ -69,6 +69,6 @@ app.get("/posts", (req, res) => {
   });
 });
 
-app.listen(8000, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log("server started");
 });
