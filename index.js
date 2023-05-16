@@ -8,13 +8,8 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-const db = mysql.createConnection({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-});
+const urlDb = `mysql://${process.env.MYSQL_USER}:${process.env.MYSQL_PASSWORD}@${process.env.MYSQL_HOST}:${process.env.MYSQL_PORT}/${process.env.MYSQL_DATABASE}`;
+const db = mysql.createConnection(urlDb);
 
 app.post("/createPost", (req, res) => {
   console.log(req.body);
