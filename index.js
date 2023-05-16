@@ -83,6 +83,10 @@ app.get("/test", (req, res) => {
   res.send("testing");
 });
 
+app.get("/", (req, res) => {
+  res.send("homepage");
+});
+
 app.listen(process.env.PORT || 9000, "0.0.0.0", () => {
   console.log("Server started");
 });
