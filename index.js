@@ -80,6 +80,6 @@ app.get("/posts", (req, res) => {
   });
 });
 
-app.listen(process.env.PORT || 3306, () => {
+app.listen(process.env.PORT || 9000, () => {
   console.log("server started");
 });
