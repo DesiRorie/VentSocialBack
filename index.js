@@ -18,6 +18,13 @@ const urlDb = `mysql://${process.env.MYSQL_USER}:${process.env.MYSQL_PASSWORD}@$
 //   port: process.env.MYSQL_PORT,
 // };
 const db = mysql.createConnection(urlDb);
+db.connect((err) => {
+  if (err) {
+    console.error("Error connecting to the database:", err);
+    return;
+  }
+  console.log("Connected to the database!");
+});
 
 app.post("/createPost", (req, res) => {
   console.log(req.body);
