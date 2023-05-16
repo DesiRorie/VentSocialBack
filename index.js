@@ -147,6 +147,8 @@ const calculateElapsedTime = (timestamp) => {
   const timeDifference = currentTime - timestamp;
   const secondsElapsed = Math.floor(timeDifference / 1000);
   const minutesElapsed = Math.floor(timeDifference / (1000 * 60));
+  const hoursElapsed = Math.floor(timeDifference / (1000 * 60 * 60));
+  const daysElapsed = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
   if (secondsElapsed < 10) {
     return "Just now";
@@ -154,8 +156,16 @@ const calculateElapsedTime = (timestamp) => {
     return `${secondsElapsed} seconds ago`;
   } else if (minutesElapsed === 1) {
     return "1 minute ago";
-  } else {
+  } else if (hoursElapsed < 1) {
     return `${minutesElapsed} minutes ago`;
+  } else if (hoursElapsed === 1) {
+    return "1 hour ago";
+  } else if (daysElapsed < 1) {
+    return `${hoursElapsed} hours ago`;
+  } else if (daysElapsed === 1) {
+    return "1 day ago";
+  } else {
+    return `${daysElapsed} days ago`;
   }
 };
 
