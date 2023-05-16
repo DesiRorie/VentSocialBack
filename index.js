@@ -33,6 +33,7 @@ app.post("/createPost", (req, res) => {
         console.log(err);
         res.status(500).send("Error inserting post");
       } else {
+        console.log(err);
         res.send("Post inserted");
       }
     }
