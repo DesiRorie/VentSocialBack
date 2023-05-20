@@ -41,7 +41,7 @@ app.post("/createPost", async (req, res) => {
       "INSERT INTO posts (text, elapsedTime, timestamp) VALUES (?, ?, ?)",
       [text, elapsedTime, timestamp]
     );
-
+    db.end();
     res.send("Post inserted");
   } catch (error) {
     console.log(error);
