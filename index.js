@@ -17,9 +17,10 @@ const urlDb = {
   port: process.env.MYSQLPORT,
 };
 
-const createConnection = async () => {
+const createPool = async () => {
   try {
-    const connection = await mysql.createConnection(urlDb);
+    const pool = mysql.createPool(urlDb);
+    const connection = await pool.getConnection();
     console.log("Connected to the database!");
     return connection;
   } catch (err) {
@@ -28,7 +29,7 @@ const createConnection = async () => {
   }
 };
 
-const dbPromise = createConnection();
+const dbPromise = createPool();
 
 app.post("/createPost", async (req, res) => {
   try {
@@ -41,7 +42,7 @@ app.post("/createPost", async (req, res) => {
       "INSERT INTO posts (text, elapsedTime, timestamp) VALUES (?, ?, ?)",
       [text, elapsedTime, timestamp]
     );
-    db.end();
+    db.release();
     res.send("Post inserted");
   } catch (error) {
     console.log(error);
